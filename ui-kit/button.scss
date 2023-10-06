@@ -1,0 +1,33 @@
+@import url('../fonts/fonts.scss');
+
+.button {
+  width: 180px;
+  height: 32px;
+  box-sizing: border-box;
+  font-size: 14px;
+  border-radius: 16px;
+  font-family: inherit;
+  &_yes {
+    background: var(--green-1);
+    color: var(--green-2);
+    &:hover {
+      background-color: var(--yellow);
+    }
+  }
+  &_no {
+    background: var(--green-2);
+    color: var(--white);
+    &:hover {
+        background: var(--green-3);
+    }
+    
+  }
+  &_border_white {
+    border: 2px solid var(--white);
+  }
+}
+
+.buttons-demo {
+    display: flex;
+    gap: 2rem;
+}
