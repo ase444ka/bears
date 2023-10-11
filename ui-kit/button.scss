@@ -5,7 +5,8 @@
     display: flex;
     gap: 2rem;
     margin: 20px auto;
-}
+  }
+  cursor: pointer;
   width: 180px;
   height: 32px;
   box-sizing: border-box;
@@ -23,12 +24,10 @@
     background: var(--green-2);
     color: var(--white);
     &:hover {
-        background: var(--green-3);
+      background: var(--green-3);
     }
-    
   }
   &_border_white {
     border: 2px solid var(--white);
   }
 }
-
