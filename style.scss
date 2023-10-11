@@ -45,7 +45,12 @@ body {
   font-family: Geologica, 'Times New Roman', Times, serif;
   min-height: 100vh;
   background-color: var(--grey-2);
-  color: var(--black)
+  color: var(--black);
+  margin: 0;
+}
+
+#app {
+  padding: 20px;
 }
 
 

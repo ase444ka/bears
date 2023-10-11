@@ -3,5 +3,9 @@
         <symbol id="check">
                 <path d="M9.19572 1.84794L3.87781 7.84374L1.06217 5.00253" stroke="currentColor" fill="none"  stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
         </symbol>
+        <symbol id="cross">
+            <path d="M19 1L1 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M1 1L19 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
     </defs>
 </svg>

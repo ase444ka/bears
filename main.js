@@ -4,6 +4,7 @@ import viteLogo from '/vite.svg';
 import {setupCounter} from './counter.js';
 import './ui-kit/button.scss';
 import './ui-kit/checkbox.scss';
+import './ui-kit/close.scss';
 
 document.querySelector('#app').innerHTML = /* jsx */ `
   <div class="buttons-demo">
@@ -30,6 +31,11 @@ document.querySelector('#app').innerHTML = /* jsx */ `
         <div class="checkbox__label">Только из заповедника</div>
       </div> 
     </label>
+  </div>
+  <div class="close-demo">
+    <button class="close">
+      <svg class="close__icon"><use href="./public/sprites.svg#cross"></use></svg>
+    </button>
   </div>
 `;
 
