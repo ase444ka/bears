@@ -1,6 +1,11 @@
 @import url('../fonts/fonts.scss');
 
 .button {
+  &s-demo {
+    display: flex;
+    gap: 2rem;
+    margin: 20px auto;
+}
   width: 180px;
   height: 32px;
   box-sizing: border-box;
@@ -27,7 +32,3 @@
   }
 }
 
-.buttons-demo {
-    display: flex;
-    gap: 2rem;
-}
