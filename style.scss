@@ -14,15 +14,15 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 
-
   --white: #ffffff;
-  --black: #3F3F3F;
-  --green-1: #58FFB5;
+  --black: #3f3f3f;
+  --green-1: #58ffb5;
   --green-2: #208085;
-  --green-3: #0E4447;
-  --yellow: #FEED7E;
-  --grey-1: #E4E4E4;
-  --grey-2: #9A9A9A;
+  --green-2_transparent: rgba(32, 128, 133, 0.00);
+  --green-3: #0e4447;
+  --yellow: #feed7e;
+  --grey-1: #e4e4e4;
+  --grey-2: #9a9a9a;
   --grey-3: #767676;
 
   --error: var(--red);
@@ -37,10 +37,6 @@ button {
   outline: none;
 }
 
-
-
-
-
 body {
   font-family: Geologica, 'Times New Roman', Times, serif;
   min-height: 100vh;
@@ -53,6 +49,6 @@ body {
   padding: 20px;
 }
 
-
-
-
+* {
+  box-sizing: border-box;
+}
