@@ -6,6 +6,9 @@
         <symbol id="cross">
             <path d="M19 1L1 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             <path d="M1 1L19 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-    </symbol>
+        </symbol>
+        <symbol id="arrow-down">
+            <path d="M13 1L7 5L1 1" stroke="currentColor" stroke-width="2"  fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        </symbol>
     </defs>
 </svg>

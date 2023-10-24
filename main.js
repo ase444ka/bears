@@ -6,6 +6,13 @@ import './ui-kit/button.scss';
 import './ui-kit/checkbox.scss';
 import './ui-kit/close.scss';
 import './ui-kit/card.scss';
+import './ui-kit/dropdown/dropdown.scss';
+import initDropdowns from './ui-kit/dropdown/dropdown.js'
+
+const hide = (event) => {
+  alert('kjkj');
+  event.preventDefault;
+};
 
 document.querySelector('#app').innerHTML = /* jsx */ `
   <div class="buttons-demo">
@@ -70,4 +77,39 @@ document.querySelector('#app').innerHTML = /* jsx */ `
     </div>
   </div>
 </div>
+<input />
+
+<div class="dropdown" >
+  <svg class="dropdown__arrow">
+  <use href="./public/sprites.svg#arrow-down"></use>
+  </svg>
+  <div class="dropdown__option">
+    <input type="radio" name="t" id="_1" value="Принятые"  checked/>
+    <label for="_1">Принятые</label>
+  </div>
+  <div class="dropdown__option">
+    <input type="radio" name="t" id="_2" value="Отклоненные" />
+    <label for="_2">Отклоненные</label>
+  </div>
+  <div class="dropdown__option">
+    <input type="radio" name="t" id="_3" value="В заповеднике" />
+    <label for="_3">В заповеднике</label>
+  </div>
+</div> 
+<br />
+<br />
+
+
+<select>
+  <option>1</option>
+  <option>2</option>
+  <option>3</option>
+  <option>4</option>
+  <option>5</option>
+  </select>
+<input />
+<input />
+
 `;
+initDropdowns()
+sel()
