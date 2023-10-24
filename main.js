@@ -7,7 +7,8 @@ import './ui-kit/checkbox.scss';
 import './ui-kit/close.scss';
 import './ui-kit/card.scss';
 import './ui-kit/dropdown/dropdown.scss';
-import initDropdowns from './ui-kit/dropdown/dropdown.js'
+import initDropdowns from './ui-kit/dropdown/dropdown.js';
+import './ui-kit/modal/modal.scss';
 
 const hide = (event) => {
   alert('kjkj');
@@ -77,7 +78,6 @@ document.querySelector('#app').innerHTML = /* jsx */ `
     </div>
   </div>
 </div>
-<input />
 
 <div class="dropdown" >
   <svg class="dropdown__arrow">
@@ -99,17 +99,33 @@ document.querySelector('#app').innerHTML = /* jsx */ `
 <br />
 <br />
 
+<div class="modal">
+  <div class="modal__window">
+    <div class="modal__wrapper">
+    <button class="close modal__close-button">
+          <svg class="close__icon"><use href="./public/sprites.svg#cross"></use></svg>
+    </button>
+    <div class="card modal__card"> 
+    <div class="card__reserved-label">В заповеднике</div>
+      <img class="card__image" alt="бурый медведь" src="./public/images/bear1.png">
+        <div class="card__content">
+      <h5 class="card__title">Донна</h5>
+      <p class="card__description"><span>Бурый медведь</span><span>Самец</span></p>
+      <p class="card__text">Некогда бурый медведь был обычен по всей Европе, включая Англию и Ирландию (Атласский медведь), а на востоке через Сибирь и Китай доходил до Японии. </p>
+      <p class="card__text">В Северную Америку он, вероятно, попал около 40 000 лет назад из Азии, через Берингов перешеек и широко расселился в западной части континента от Аляски и до севера Мексики.</p>
+      <div class="card__actions">
+        <button class="button button_yes">Принять</button>
+        <button class="button button_no">Отклонить</button>
+      </div>
+    </div>
+    </div>
+  </div>
+    </div>
+  </div>
 
-<select>
-  <option>1</option>
-  <option>2</option>
-  <option>3</option>
-  <option>4</option>
-  <option>5</option>
-  </select>
-<input />
-<input />
+
+
 
 `;
-initDropdowns()
-sel()
+initDropdowns();
+sel();
