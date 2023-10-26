@@ -9,6 +9,8 @@ import './ui-kit/card.scss';
 import './ui-kit/dropdown/dropdown.scss';
 import initDropdowns from './ui-kit/dropdown/dropdown.js';
 import './ui-kit/modal/modal.scss';
+import './ui-kit/modal/modal.js';
+import initModal from './ui-kit/modal/modal.js';
 
 const hide = (event) => {
   alert('kjkj');
@@ -79,6 +81,8 @@ document.querySelector('#app').innerHTML = /* jsx */ `
   </div>
 </div>
 
+<input />
+
 <div class="dropdown" >
   <svg class="dropdown__arrow">
   <use href="./public/sprites.svg#arrow-down"></use>
@@ -128,4 +132,4 @@ document.querySelector('#app').innerHTML = /* jsx */ `
 
 `;
 initDropdowns();
-sel();
+initModal();

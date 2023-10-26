@@ -8,6 +8,9 @@
     background: rgba(14, 68, 71, 0.20);
     backdrop-filter: blur(40.774227142333984px);
     overflow: hidden;
+    &__closed {
+        display: none;
+    }
     &__window {
         position: absolute;
         top: 67px;
