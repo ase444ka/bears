@@ -3,6 +3,8 @@ let i = 0,
 export default function initDropdowns() {
   const dropdowns = document.querySelectorAll('.dropdown');
 
+  if (!dropdowns) return
+
   const toggleVisibility = (dropdown) => {
     console.log(i++);
     if (dropdown.classList.contains('dropdown_minimized')) {
@@ -56,12 +58,12 @@ export default function initDropdowns() {
       'keyup',
       (e) => {
         const dropdown = e.currentTarget.closest('.dropdown');
-        if (e.keyCode === 9) {
+        if (e.key === 'Tab') {
           expand(dropdown);
           const input = e.target;
           refreshIndicators(dropdown, input)
         }
-        if (e.keyCode === 40 || e.keyCode === 38) {
+        if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {
           expand(dropdown);
           const input = e.target;
           refreshIndicators(dropdown, input)
@@ -78,7 +80,6 @@ export default function initDropdowns() {
 
   document.addEventListener('pointerup', (e) => {
     if (!e.target.classList.contains('.dropdown__label')) {
-      console.log('catch!', e.target)
       dropdowns.forEach((item) => {
         minimize(item);
         liftUpChecked(item);
