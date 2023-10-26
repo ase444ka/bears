@@ -56,3 +56,22 @@
         top: 0px;
     }
 }
+@media (max-height: 900px) {
+    .modal {
+        &__window {
+            top: 10px;
+            
+        }
+        &__card {
+            max-height: 95vh;
+            width: 80vw;
+            .card {
+                &__image {
+                    object-position: top;
+                }
+            }
+        }
+        
+    }
+    
+}
