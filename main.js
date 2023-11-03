@@ -149,6 +149,7 @@ const bears = [
     breed: 'бурый медведь',
     isReserved: true,
     status: 'none',
+    text: 'lorem lorem'
   },
   {
     image: 'bear1',
@@ -157,6 +158,7 @@ const bears = [
     breed: 'белый медведь',
     isReserved: true,
     status: 'none',
+    text: 'lorem lorem'
   },
   {
     image: 'bear1',
@@ -165,6 +167,7 @@ const bears = [
     breed: 'белый медведь',
     isReserved: false,
     status: 'none',
+    text: 'lorem lorem'
   },
   {
     image: 'bear1',
@@ -173,8 +176,11 @@ const bears = [
     breed: 'гризли',
     isReserved: false,
     status: 'none',
+    text: 'lorem lorem'
   },
 ];
+
+
 
 class App extends BaseComponent {
   subElements = {};

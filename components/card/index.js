@@ -3,6 +3,8 @@ import connectToObserver from '../../core/observer/connect.js';
 import connectToStore from '../../core/store/connect.js';
 import reducers from '../../reducers.js';
 
+import Modal from '../modal'
+
 import './card.scss';
 
 class Card extends BaseComponent {
@@ -64,6 +66,11 @@ class Card extends BaseComponent {
       }
       this.denyBear();
     });
+
+    this.element.addEventListener('pointerdown', (event) => {
+      if (event.target.classList.contains('button')) return
+        this.showDescription()
+    })
   }
 
   acceptBear() {
@@ -78,6 +85,12 @@ class Card extends BaseComponent {
       bear: this.bear,
     });
     this.store.dispatch(reducers.denyApplication(this.bear));
+  }
+
+  showDescription() {
+    console.log('this bear', this.bear)
+    const modal = new Modal(this.bear)
+    modal.show()
   }
 
 
