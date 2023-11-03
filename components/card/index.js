@@ -1,9 +1,9 @@
 import BaseComponent from '../base-component.js';
 import connectToObserver from '../../core/observer/connect.js';
 import connectToStore from '../../core/store/connect.js';
-import {acceptApplication, denyApplication} from '../../reducers.js';
+import reducers from '../../reducers.js';
 
-import './card.css';
+import './card.scss';
 
 class Card extends BaseComponent {
   subElements = {};
@@ -28,7 +28,7 @@ class Card extends BaseComponent {
     const {image, name, gender, breed, isReserved, status} = this.bear;
 
     return `
-      <div class="card ${isReserved ? 'card__reserved' : ''}">            
+      <div class="card ${isReserved ? 'card_reserved' : ''}">            
         <img class="card__image" alt="бурый медведь" src="./public/images/${image}.png">
         <div class="card__reserved-label">В заповеднике</div>
         <h5 class="card__title">${name}</h5>
@@ -38,7 +38,7 @@ class Card extends BaseComponent {
             status === 'accepted' ? 'disabled' : ''
           }>Принять</button>
           <button class="button button_no" data-element="deny" ${
-            status === 'accepted' ? '' : 'disabled'
+            status === 'denied' ? 'disabled' : ''
           }>Отклонить</button>
         </div>
       </div>
@@ -70,14 +70,14 @@ class Card extends BaseComponent {
     this.dispatchEvent('accept', {
       bear: this.bear,
     });
-    this.store.dispatch(acceptApplication(this.bear));
+    this.store.dispatch(reducers.acceptApplication(this.bear));
   }
 
   denyBear() {
     this.dispatchEvent('deny', {
       bear: this.bear,
     });
-    this.store.dispatch(denyApplication(this.bear));
+    this.store.dispatch(reducers.denyApplication(this.bear));
   }
 
 
