@@ -1,3 +1,5 @@
+@import url('../close.scss');
+
 .modal {
   position: fixed;
   left: 0;
@@ -21,8 +23,8 @@
     position: relative;
   }
   &__card {
-    width: 460px;
-    height: initial;
+    width: 460px !important;
+    height: initial !important;
     .card {
       &__image {
         height: 460px;

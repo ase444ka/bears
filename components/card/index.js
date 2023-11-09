@@ -2,10 +2,11 @@ import BaseComponent from '../base-component.js';
 import connectToObserver from '../../core/observer/connect.js';
 import connectToStore from '../../core/store/connect.js';
 import reducers from '../../reducers.js';
+import './card.scss';
+
 
 import Modal from '../modal'
 
-import './card.scss';
 
 class Card extends BaseComponent {
   subElements = {};
