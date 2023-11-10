@@ -4,6 +4,8 @@ import connectToStore from '../../core/store/connect.js';
 import reducers from '../../reducers.js';
 import './card.scss';
 
+import api from '../../api'
+
 
 import Modal from '../modal'
 
@@ -51,11 +53,13 @@ class Card extends BaseComponent {
   initEventListeners() {
     const {accept, deny} = this.subElements;
 
-    accept.addEventListener('pointerdown', (event) => {
+    accept.addEventListener('pointerdown', async (event) => {
       if (accept.hasAttribute('disabled')) {
-        console.log('accept is disabled');
+        console.log(response);
         return;
       }
+      const {data} = await api.getBears()
+      console.log(data)
       console.log('кнопка принять активна');
       this.acceptBear();
     });
