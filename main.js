@@ -31,7 +31,7 @@ import './ui-kit/button.scss';
 //           <svg class="checkbox__icon"><use href="./public/sprites.svg#check"></use></svg>
 //         </div>
 //         <div class="checkbox__label">Только из заповедника</div>
-//       </div> 
+//       </div>
 //     </label>
 //     <label class="checkbox">
 //       <input type="checkbox" class="checkbox__input" checked />
@@ -40,7 +40,7 @@ import './ui-kit/button.scss';
 //           <svg class="checkbox__icon"><use href="./public/sprites.svg#check"></use></svg>
 //         </div>
 //         <div class="checkbox__label">Только из заповедника</div>
-//       </div> 
+//       </div>
 //     </label>
 //   </div>
 //   <div class="close-demo">
@@ -49,8 +49,8 @@ import './ui-kit/button.scss';
 //     </button>
 //   </div>
 //   <div class="cards-demo">
-//   <div class="card">            
-//     <img class="card__image" alt="бурый медведь" src="./public/images/bear1.png">
+//   <div class="card">
+//     <img class="card__image" alt="бурый медведь" src="./ui-kit/images/bear1.png">
 //     <div class="card__reserved-label">В заповеднике</div>
 //     <h5 class="card__title">Донна</h5>
 //     <p class="card__description"><span>Бурый медведь</span><span>Самец</span></p>
@@ -59,8 +59,8 @@ import './ui-kit/button.scss';
 //       <button class="button button_no">Отклонить</button>
 //     </div>
 //   </div>
-//   <div class="card">            
-//     <img class="card__image" alt="бурый медведь" src="./public/images/bear1.png">
+//   <div class="card">
+//     <img class="card__image" alt="бурый медведь" src="./ui-kit/images/bear1.png">
 //     <div class="card__reserved-label">В заповеднике</div>
 //     <h5 class="card__title">Донна</h5>
 //     <p class="card__description"><span>Бурый медведь</span><span>Самец</span></p>
@@ -69,8 +69,8 @@ import './ui-kit/button.scss';
 //       <button class="button button_no">Отклонить</button>
 //     </div>
 //   </div>
-//   <div class="card card_reserved">            
-//     <img class="card__image" alt="бурый медведь" src="./public/images/bear1.png">
+//   <div class="card card_reserved">
+//     <img class="card__image" alt="бурый медведь" src="./ui-kit/images/bear1.png">
 //     <div class="card__reserved-label">В заповеднике</div>
 //     <h5 class="card__title">Донна</h5>
 //     <p class="card__description"><span>Бурый медведь</span><span>Самец</span></p>
@@ -99,7 +99,7 @@ import './ui-kit/button.scss';
 //     <input type="radio" name="t" id="_3" value="В заповеднике" />
 //     <label for="_3">В заповеднике</label>
 //   </div>
-// </div> 
+// </div>
 // <br />
 // <br />
 
@@ -109,9 +109,9 @@ import './ui-kit/button.scss';
 //     <button class="close modal__close-button">
 //           <svg class="close__icon"><use href="./public/sprites.svg#cross"></use></svg>
 //     </button>
-//     <div class="card modal__card"> 
+//     <div class="card modal__card">
 //     <div class="card__reserved-label">В заповеднике</div>
-//       <img class="card__image" alt="бурый медведь" src="./public/images/bear1.png">
+//       <img class="card__image" alt="бурый медведь" src="./ui-kit/images/bear1.png">
 //         <div class="card__content">
 //       <h5 class="card__title">Донна</h5>
 //       <p class="card__description"><span>Бурый медведь</span><span>Самец</span></p>
@@ -127,19 +127,14 @@ import './ui-kit/button.scss';
 //     </div>
 //   </div>
 
-
-
-
 // `;
 // initDropdowns();
 // initModal();
 
 import BaseComponent from './components/base-component.js';
-import Store from './core/store/index.js';
-import reducers from './reducers.js';
-import connectToStore from './core/store/connect.js';
-
 import CardsList from './components/cards-list';
+import ConnectToObserver from './core/observer/connect';
+import ConnectToStore from './core/store/connect';
 
 const bears = [
   {
@@ -149,7 +144,7 @@ const bears = [
     breed: 'бурый медведь',
     isReserved: true,
     status: 'none',
-    text: 'lorem lorem'
+    text: 'lorem lorem',
   },
   {
     image: 'bear1',
@@ -158,7 +153,7 @@ const bears = [
     breed: 'белый медведь',
     isReserved: true,
     status: 'none',
-    text: 'lorem lorem'
+    text: 'lorem lorem',
   },
   {
     image: 'bear1',
@@ -167,7 +162,7 @@ const bears = [
     breed: 'белый медведь',
     isReserved: false,
     status: 'none',
-    text: 'lorem lorem'
+    text: 'lorem lorem',
   },
   {
     image: 'bear1',
@@ -176,19 +171,19 @@ const bears = [
     breed: 'гризли',
     isReserved: false,
     status: 'none',
-    text: 'lorem lorem'
+    text: 'lorem lorem',
   },
 ];
-
-
 
 class App extends BaseComponent {
   subElements = {};
 
-  constructor(store) {
+  constructor(observer, store) {
     super();
 
+    this.observer = observer;
     this.store = store;
+
     this.render();
     this.renderCardList();
 
@@ -196,8 +191,8 @@ class App extends BaseComponent {
   }
 
   renderCardList() {
-    this.cards = new CardsList({data: bears})
-    this.element.append(this.cards.element)
+    this.cards = new CardsList({data: bears});
+    this.element.append(this.cards.element);
   }
 
   get template() {
@@ -206,21 +201,19 @@ class App extends BaseComponent {
     </div>`;
   }
 
-  initEventListeners() {}
+  initEventListeners() {
+    this.observer.subscribe('accept', (id) => {
+      this.store.dispatch('accept', id);
+    });
+    this.observer.subscribe('deny', (id) => {
+      this.store.dispatch('deny', id);
+    });
+    this.observer.subscribe('reset', () => {
+      this.store.dispatch('reset');
+    });
+  }
 }
 
-// TODO: move to "create-store" module
-const storeKey = Symbol.for('storeKey');
-const initStore = {
-  accepted: [],
-  denied: [],
-};
+const app = new ConnectToStore(ConnectToObserver(App));
 
-const store = new Store(reducers, initStore);
-
-globalThis[storeKey] = store;
-
-const ConnectedApp = connectToStore(App);
-const app = new ConnectedApp();
-
-document.body.append(app.element); 
+document.body.append(app.element);
