@@ -1,5 +1,5 @@
 class BaseComponent {
-  element = {};
+  element = null;
   subElements = {};
   abortController = new AbortController();
 
@@ -10,7 +10,7 @@ class BaseComponent {
   }
 
   render () {
-    this.element = this.createElement();
+    this.element = this.element || this.createElement();
     this.subElements = this.getSubElements();
   }
 

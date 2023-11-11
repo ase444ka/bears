@@ -1,72 +1,80 @@
-// NOTE: Pattern. Mediator
+import cloneDeep from 'lodash.clonedeep';
+import api from '../../api';
+
 export default class Store {
   static #instance;
 
-  state = {};
+  state = [];
 
   listeners = [];
 
-  // NOTE: Pattern: Singleton
-  constructor(reducers = {}, initialState = {}) {
-    if (Store.#instance) {
-      return Store.#instance;
-    }
-
-    this.reducers = reducers;
-    this.state = {...initialState};
-
-    Store.#instance = this;
+  get state() {
+    return this.state;
   }
 
-  getState = (slice) => {
-    if (slice) {
-      return this.state[slice];
-    }
+  set state(value) {
+    this.state = value;
+    this.activateListeners()
+    
+  }
 
-    return this.state;
-  };
+  setState(value) {
+    this.state = value
+    this.activateListeners()
+  }
 
-  setState = (slice, value) => {
-    this.state[slice] = value;
-  };
-
-  dispatch (action = {}) {
-    const { type, payload } = action;
-
-    console.error('action', action);
-
-    for (const reducerName of Object.keys(this.reducers)) {
-      const reducerMethod = this.reducers[reducerName][type];
-
-      if (reducerMethod) {
-        const state = this.getState(reducerName);
-
-        console.error('current state', state);
-
-        const nextValue = reducerMethod(state, payload);
-
-        this.setState(reducerName, nextValue);
-
-        console.error('next state', this.getState());
-
-        const listeners = this.listeners[type];
-
-        if (listeners) {
-          const state = this.getState(reducerName);
-
-          for (const [listener] of listeners.entries()) {
-            listener(state);
-          }
-        }
+  activateListeners() {
+    for (const listener of this.listeners) {
+      if (listener.render) {
+        listener.render();
+      } else {
       }
     }
   }
 
-  subscribe (eventName, listener) {
-    if (this.listeners[eventName]) {
-      this.listeners[eventName].set(listener, null);
+  // NOTE: Pattern: Singleton
+  constructor(reducers = {}, initialState = []) {
+    if (Store.#instance) {
+      return Store.#instance;
+    }
+
+    this.state = [...initialState];
+
+    Store.#instance = this;
+  }
+
+  async dispatch(action, payload) {
+    let state, bear, response;
+    if (payload) {
+      state = cloneDeep(this.state);
+      bear = state.find((bear) => bear.id === payload);
+    }
+
+    switch (action) {
+      case 'accept':
+        bear.status = 'accepted';
+        break;
+      case 'deny':
+        bear.status = 'denied';
+        break;
+      case 'reset':
+        state = this.state.map((bear) => ({...bear, status: null}));
+        break;
+      case 'init':
+        break;
+    }
+    if (state?.length) {
+      console.log('yyy');
+      response = await api.postBears(state);
     } else {
-      this.listeners[eventName] = new Map([[listener, null]]);
+      response = await api.getBears();
+    }
+    this.setState(response.data);
+  }
+
+  subscribe(listener) {
+    if (!this.listeners.includes(listener)) {
+      this.listeners.push(listener);
     }
 
     return () => {
@@ -74,4 +82,3 @@ export default class Store {
     };
   }
 }
-

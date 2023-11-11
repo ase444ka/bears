@@ -136,6 +136,11 @@ import CardsList from './components/cards-list';
 import ConnectToObserver from './core/observer/connect';
 import ConnectToStore from './core/store/connect';
 
+import Store from './core/store';
+import Observer from './core/observer';
+
+let i = 1
+
 const bears = [
   {
     image: 'bear1',
@@ -178,20 +183,32 @@ const bears = [
 class App extends BaseComponent {
   subElements = {};
 
-  constructor(observer, store) {
+  constructor(store, observer) {
+
     super();
 
     this.observer = observer;
     this.store = store;
-
-    this.render();
-    this.renderCardList();
-
     this.initEventListeners();
+
+    this.initStore();
+    this.render()
+  }
+
+  async initStore() {
+    this.store.subscribe(this);
+    this.store.dispatch('init');
+  }
+
+  render() {
+    super.render();
+    this.renderCardList();
+    console.log('render ', i++);
+    console.log(this.element)
   }
 
   renderCardList() {
-    this.cards = new CardsList({data: bears});
+    this.cards = new CardsList({data: this.store.state});
     this.element.append(this.cards.element);
   }
 
@@ -214,6 +231,7 @@ class App extends BaseComponent {
   }
 }
 
-const app = new ConnectToStore(ConnectToObserver(App));
+const AppClass = ConnectToStore(ConnectToObserver(App));
+const app = new AppClass();
 
 document.body.append(app.element);
