@@ -133,10 +133,9 @@ import './ui-kit/button.scss';
 
 import BaseComponent from './components/base-component.js';
 import CardsList from './components/cards-list';
+import StatusSelector from './components/status-selector'
 import ConnectToObserver from './core/observer/connect';
 
-import Store from './core/store';
-import Observer from './core/observer';
 
 
 const bears = [
@@ -198,7 +197,13 @@ class App extends BaseComponent {
 
   render() {
     super.render();
+    this.renderStatusSelector()
     this.renderCardList();
+  }
+
+  renderStatusSelector() {
+    this.statusSelector = new StatusSelector()
+    this.subElements.selector.append(this.statusSelector.element)
   }
 
   renderCardList() {
@@ -206,8 +211,13 @@ class App extends BaseComponent {
     this.subElements.cards.append(this.cards.element);
   }
 
+
+
   get template() {
     return `<div>
+    <div data-element="selector">
+        <!--selector-->
+      </div>
       <div data-element="cards">
         <!--cards-->
       </div>

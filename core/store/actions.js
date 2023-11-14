@@ -49,7 +49,8 @@ export default {
   },
 
   switch(state, payload) {
-    if (!['all', 'accepted', 'denied'].includes(payload)) {
+    console.log('switch', payload);
+    if (!['all', 'accepted', 'denied', 'reserved'].includes(payload)) {
         throw new Error('not allowed value - ', payload)
     }
     if (state.status === payload) {

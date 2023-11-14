@@ -1,27 +1,27 @@
-let i = 0,
-  j = 0;
-export default function initDropdowns() {
-  const dropdowns = document.querySelectorAll('.dropdown');
 
-  if (!dropdowns) return
+export default function initDropdown(dropdown, handler) {
+
+
+
 
   const toggleVisibility = (dropdown) => {
-    console.log(i++);
     if (dropdown.classList.contains('dropdown_minimized')) {
       expand(dropdown);
     } else {
       minimize(dropdown);
-      liftUpChecked(dropdown);
+      select(dropdown);
       refreshIndicators(dropdown)
     }
   };
 
-  const liftUpChecked = (dropdown) => {
+  const select = (dropdown) => {
     setTimeout(() => {
       const checked = Array.prototype.find.call(
         dropdown.querySelectorAll('input'),
         (input) => input.checked
+
       );
+      handler(checked.value)
       const option = checked.closest('.dropdown__option');
       setTimeout(() => {
         dropdown.prepend(option);
@@ -30,7 +30,6 @@ export default function initDropdowns() {
   };
 
   const minimize = (dropdown) => {
-    console.log('ninini')
     dropdown.classList.add('dropdown_minimized');
   };
 
@@ -45,19 +44,14 @@ export default function initDropdowns() {
     input && input.classList.add('input_hover');
   }
 
-  dropdowns.forEach((item) => {
-    item.addEventListener('pointerup', (e) => {
-      const dropdown = e.currentTarget;
+    dropdown.addEventListener('pointerup', (e) => {
       toggleVisibility(dropdown);
       e.stopPropagation()
     });
-  });
 
-  dropdowns.forEach((item) => {
-    item.addEventListener(
+    dropdown.addEventListener(
       'keyup',
       (e) => {
-        const dropdown = e.currentTarget.closest('.dropdown');
         if (e.key === 'Tab') {
           expand(dropdown);
           const input = e.target;
@@ -70,21 +64,18 @@ export default function initDropdowns() {
         }  
         if (e.keyCode === 13) {
           minimize(dropdown)
-          liftUpChecked(dropdown)
+          select(dropdown)
           refreshIndicators(dropdown)
         }
       },
       true
     );
-  });
 
   document.addEventListener('pointerup', (e) => {
     if (!e.target.classList.contains('.dropdown__label')) {
-      dropdowns.forEach((item) => {
-        minimize(item);
-        liftUpChecked(item);
-        refreshIndicators(item)
-      });
+        minimize(dropdown);
+        select(dropdown);
+        refreshIndicators(dropdown)
     }
   });
 }
