@@ -139,7 +139,6 @@ import ConnectToStore from './core/store/connect';
 import Store from './core/store';
 import Observer from './core/observer';
 
-let i = 1
 
 const bears = [
   {
@@ -203,8 +202,6 @@ class App extends BaseComponent {
   render() {
     super.render();
     this.renderCardList();
-    console.log('render ', i++);
-    console.log(this.element)
   }
 
   renderCardList() {
@@ -232,6 +229,6 @@ class App extends BaseComponent {
 }
 
 const AppClass = ConnectToStore(ConnectToObserver(App));
-const app = new AppClass();
+const app = new AppClass({bears: [], status: 'all'});
 
 document.body.append(app.element);

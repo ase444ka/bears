@@ -1,84 +1,63 @@
-import cloneDeep from 'lodash.clonedeep';
-import api from '../../api';
+import actions from './actions';
 
 export default class Store {
   static #instance;
 
-  state = [];
+  actions = actions;
 
-  listeners = [];
-
-  get state() {
-    return this.state;
-  }
+  state = {
+    bears: [],
+    status: 'all',
+  };
 
   set state(value) {
-    this.state = value;
-    this.activateListeners()
-    
+    console.error('oops', value);
+    throw new Error('you can not verify state outside');
   }
 
-  setState(value) {
-    this.state = value
-    this.activateListeners()
+  listeners = {};
+
+  getState(slice) {
+    return this.state[slice] || this.state;
   }
 
-  activateListeners() {
-    for (const listener of this.listeners) {
-      if (listener.render) {
-        listener.render();
-      } else {
-      }
+  setState(slice, value) {
+    this.state[slice] = value;
+    this.activateListeners(slice);
+  }
+
+  activateListeners(slice) {
+    for (const [listener] of this.listeners[slice].entries()) {
+      listener.render();
     }
   }
 
   // NOTE: Pattern: Singleton
-  constructor(reducers = {}, initialState = []) {
+  constructor() {
     if (Store.#instance) {
       return Store.#instance;
     }
-
-    this.state = [...initialState];
 
     Store.#instance = this;
   }
 
   async dispatch(action, payload) {
-    let state, bear, response;
-    if (payload) {
-      state = cloneDeep(this.state);
-      bear = state.find((bear) => bear.id === payload);
+    const {slice, data} = await this[action](this.state, payload);
+    if (!slice) {
+      return
     }
-
-    switch (action) {
-      case 'accept':
-        bear.status = 'accepted';
-        break;
-      case 'deny':
-        bear.status = 'denied';
-        break;
-      case 'reset':
-        state = this.state.map((bear) => ({...bear, status: null}));
-        break;
-      case 'init':
-        break;
-    }
-    if (state?.length) {
-      console.log('yyy');
-      response = await api.postBears(state);
-    } else {
-      response = await api.getBears();
-    }
-    this.setState(response.data);
+    this.setState(slice, data);
   }
 
-  subscribe(listener) {
-    if (!this.listeners.includes(listener)) {
-      this.listeners.push(listener);
+  subscribe(slice, listener) {
+    if (this.listeners[slice]) {
+      this.listeners[slice].set(listener, null);
+    } else {
+      this.listeners[slice] = new Map([[listener, null]]);
     }
 
     return () => {
-      return this.listeners[eventName].delete(listener);
+      return this.listeners[slice].delete(listener);
     };
   }
 }
