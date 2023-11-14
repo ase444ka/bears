@@ -193,7 +193,6 @@ class App extends BaseComponent {
   }
 
   async initStore() {
-    this.store.subscribe(this);
     this.store.dispatch('init');
   }
 
@@ -204,12 +203,14 @@ class App extends BaseComponent {
 
   renderCardList() {
     this.cards = new CardsList();
-    this.element.append(this.cards.element);
+    this.subElements.cards.append(this.cards.element);
   }
 
   get template() {
     return `<div>
-      <!--cards-->
+      <div data-element="cards">
+        <!--cards-->
+      </div>
     </div>`;
   }
 

@@ -20,31 +20,31 @@ async function getBears() {
   }
 
 export default {
-  accept(state, payload) {
+  async accept(state, payload) {
     const bears = cloneDeep(state.bears);
-    bear = bears.find((bear) => bear.id === payload);
+    const bear = bears.find((bear) => bear.id === payload);
     bear.status = 'accepted';
     const data = await postBears(bears)
     return {slice: 'bears', data}
   },
 
-  accept(state, payload) {
+  async accept(state, payload) {
     const bears = cloneDeep(state.bears);
-    bear = bears.find((bear) => bear.id === payload);
+    const bear = bears.find((bear) => bear.id === payload);
     bear.status = 'denied';
     const data = await postBears(bears)
     return {slice: 'bears', data}
   },
 
-  reset(state) {
+  async reset(state) {
     const bears = cloneDeep(state.bears);
     const newBears = bears.map(bear => ({...bear, status: null}))
     const data = await postBears(bears)
     return {slice: 'bears', data}
   },
 
-  init() {
-    const data = await getBears(bears)
+  async init() {
+    const data = await getBears()
     return {slice: 'bears', data}
   },
 

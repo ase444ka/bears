@@ -1,17 +1,21 @@
 import BaseComponent from '../base-component.js';
-import Card from '../card'
+import Card from '../card';
 
 import './card-list.css';
 
 export default class CardsList extends BaseComponent {
-  constructor () {
+  constructor() {
     super();
-    this.data = data;
     this.render();
+    this.store.subscribe('bears', this);
+  }
+
+  render() {
+    super.render();
     this.renderCards();
   }
 
-  get template () {
+  get template() {
     return `
       <div class="card-list" data-element="body">
         <!-- Cards list -->
@@ -19,23 +23,22 @@ export default class CardsList extends BaseComponent {
     `;
   }
 
-  renderCards () {
-    const cards = this.getCardsList(this.data);
+  renderCards() {
+    const cards = this.getCardsList(this.store.getState('bears'));
 
     this.element.innerHTML = '';
     this.element.append(...cards);
   }
 
-
-  getCardsList (data = []) {
-    return data.map(item => {
+  getCardsList(data = []) {
+    return data.map((item) => {
       const card = new Card(item);
 
       return card.element;
     });
   }
 
-  add (data) {
+  add(data) {
     this.data = [...this.data, ...data];
 
     const cards = this.getCardsList(data);

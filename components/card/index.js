@@ -1,6 +1,5 @@
 import BaseComponent from '../base-component.js';
 import connectToObserver from '../../core/observer/connect.js';
-import connectToStore from '../../core/store/connect'
 import reducers from '../../reducers.js';
 import './card.scss';
 
@@ -50,11 +49,8 @@ class Card extends BaseComponent {
 
     accept.addEventListener('pointerdown', async (event) => {
       if (accept.hasAttribute('disabled')) {
-        console.log(response);
         return;
       }
-      const {data} = await api.getBears()
-      console.log(data)
       console.log('кнопка принять активна');
       this.acceptBear();
     });
@@ -75,10 +71,14 @@ class Card extends BaseComponent {
 
   acceptBear() {
     this.dispatchEvent('accept', this.bear.id);
+    this.subElements.accept.setAttribute("disabled", true)
+    this.subElements.deny.removeAttribute("disabled")
   }
 
   denyBear() {
     this.dispatchEvent('deny', this.bear.id);
+    this.subElements.deny.setAttribute("disabled", true)
+    this.subElements.accept.removeAttribute("disabled")
   }
 
   showDescription() {
