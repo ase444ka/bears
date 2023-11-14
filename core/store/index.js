@@ -27,6 +27,9 @@ export default class Store {
   }
 
   activateListeners(slice) {
+    if (!this.listeners[slice]) {
+      return
+    }
     for (const [listener] of this.listeners[slice].entries()) {
       listener.render();
     }
@@ -42,7 +45,7 @@ export default class Store {
   }
 
   async dispatch(action, payload) {
-    const {slice, data} = await this[action](this.state, payload);
+    const {slice, data} = await this.actions[action](this.state, payload);
     if (!slice) {
       return
     }
