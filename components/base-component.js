@@ -1,7 +1,9 @@
+import Store from '../core/store'
 class BaseComponent {
   element = null;
   subElements = {};
   abortController = new AbortController();
+  store = new Store();
 
   constructor() {
     if (new.target === BaseComponent) {
@@ -49,9 +51,15 @@ class BaseComponent {
     this.remove();
     this.element = {};
     this.subElements = {};
+    if (this.subscriptions?.length) {
+      for (const unsubscribe of this.subscriptions) {
+        unsubscribe();
+      }
+    }
 
     this.abortController.abort();
   }
+
 }
 
 export default BaseComponent;

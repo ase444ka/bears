@@ -13,11 +13,10 @@ import Modal from '../modal'
 class Card extends BaseComponent {
   subElements = {};
 
-  constructor(bear = {}, store, observer) {
+  constructor(bear = {}, observer) {
     super();
 
     this.bear = bear;
-    this.store = store;
     this.observer = observer;
 
 
@@ -76,12 +75,10 @@ class Card extends BaseComponent {
 
   acceptBear() {
     this.dispatchEvent('accept', this.bear.id);
-    this.store.dispatch(reducers.acceptApplication(this.bear));
   }
 
   denyBear() {
     this.dispatchEvent('deny', this.bear.id);
-    this.store.dispatch(reducers.denyApplication(this.bear));
   }
 
   showDescription() {
@@ -101,4 +98,4 @@ class Card extends BaseComponent {
   }
 }
 
-export default connectToStore(connectToObserver(Card));
+export default connectToObserver(Card);

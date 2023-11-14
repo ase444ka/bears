@@ -134,7 +134,6 @@ import './ui-kit/button.scss';
 import BaseComponent from './components/base-component.js';
 import CardsList from './components/cards-list';
 import ConnectToObserver from './core/observer/connect';
-import ConnectToStore from './core/store/connect';
 
 import Store from './core/store';
 import Observer from './core/observer';
@@ -182,12 +181,11 @@ const bears = [
 class App extends BaseComponent {
   subElements = {};
 
-  constructor(store, observer) {
+  constructor(observer) {
 
     super();
 
     this.observer = observer;
-    this.store = store;
     this.initEventListeners();
 
     this.initStore();
@@ -205,7 +203,7 @@ class App extends BaseComponent {
   }
 
   renderCardList() {
-    this.cards = new CardsList({data: this.store.state});
+    this.cards = new CardsList();
     this.element.append(this.cards.element);
   }
 
@@ -228,7 +226,7 @@ class App extends BaseComponent {
   }
 }
 
-const AppClass = ConnectToStore(ConnectToObserver(App));
-const app = new AppClass({bears: [], status: 'all'});
+const AppClass = ConnectToObserver(App);
+const app = new AppClass();
 
 document.body.append(app.element);

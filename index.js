@@ -1,7 +1,6 @@
 /* import BaseComponent from './components/base-component.js';
 import Store from './core/store/index.js';
 import reducers from './reducers/index.js';
-import connectToStore from './core/store/connect.js';
 
 import CardsList from './components/cards-list';
 
@@ -46,7 +45,6 @@ class App extends BaseComponent {
   constructor(store) {
     super();
 
-    this.store = store;
     this.render();
     this.renderCardList();
 
@@ -86,7 +84,6 @@ document.body.append(app.element);
 import BaseComponent from './components/base-component.js';
 import Store from './core/store/index.js';
 import reducers from './reducers/index.js';
-import connectToStore from './core/store/connect.js';
 
 import CardsList from './components/cards-list';
 
@@ -131,7 +128,6 @@ class App extends BaseComponent {
   constructor(store) {
     super();
 
-    this.store = store;
     this.render();
     this.renderCardList();
 
@@ -162,7 +158,6 @@ const store = new Store(reducers, initStore);
 
 globalThis[storeKey] = store;
 
-const ConnectedApp = connectToStore(App);
 const app = new ConnectedApp();
 
 document.body.append(app.element);

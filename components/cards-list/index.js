@@ -4,9 +4,7 @@ import Card from '../card'
 import './card-list.css';
 
 export default class CardsList extends BaseComponent {
-  constructor ({
-   data = []
- }) {
+  constructor () {
     super();
     this.data = data;
     this.render();
@@ -28,11 +26,6 @@ export default class CardsList extends BaseComponent {
     this.element.append(...cards);
   }
 
-  update (data = []) {
-    this.data = data;
-
-    this.renderCards();
-  }
 
   getCardsList (data = []) {
     return data.map(item => {
