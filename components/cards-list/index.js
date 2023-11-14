@@ -8,6 +8,7 @@ export default class CardsList extends BaseComponent {
     super();
     this.render();
     this.store.subscribe('bears', this);
+    this.store.subscribe('status', this)
   }
 
   render() {
@@ -24,14 +25,32 @@ export default class CardsList extends BaseComponent {
   }
 
   renderCards() {
-    const cards = this.getCardsList(this.store.getState('bears'));
+    const cards = this.getCardsList();
 
     this.element.innerHTML = '';
     this.element.append(...cards);
   }
 
-  getCardsList(data = []) {
-    return data.map((item) => {
+  getCardsList() {
+    const bears = this.store.getState().bears
+    let filteredBears = bears
+    switch (this.store.getState().status) {
+      case 'all': 
+        break
+      case 'accepted': 
+        filteredBears = bears.filter(bear => bear.status === 'accepted')
+        break
+      case 'denied':
+        filteredBears = bears.filter(bear => bear.status === 'denied')
+        break
+        break
+      case 'reserved':
+        filteredBears = bears.filter(bear => bear.isReserved)
+        break
+      default: 
+        console.log(this.store.getState());
+    }
+    return filteredBears.map((item) => {
       const card = new Card(item);
 
       return card.element;

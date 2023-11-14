@@ -16,6 +16,7 @@ class StatusSelector extends BaseComponent {
 
     this.render();
     initDropdown(this.element, (value) => {
+      console.log(value);
       this.store.dispatch('switch', value)
 
     })
@@ -29,11 +30,11 @@ class StatusSelector extends BaseComponent {
        <use href="./public/sprites.svg#arrow-down"></use>
        </svg>
        <div class="dropdown__option">
-         <input type="radio" name="t" id="_1" value="all"  checked/>
+         <input type="radio" name="t" id="_1" value="all"/>
          <label for="_1">Все</label>
        </div>
        <div class="dropdown__option">
-         <input type="radio" name="t" id="_2" value="accepted"  checked/>
+         <input type="radio" name="t" id="_2" value="accepted"/>
          <label for="_2">Принятые</label>
        </div>
        <div class="dropdown__option">

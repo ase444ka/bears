@@ -56,7 +56,7 @@ export default {
     if (state.status === payload) {
         return
     }
-    return {slice: 'status', payload}
+    return {slice: 'status', data: payload}
 
   }
 
