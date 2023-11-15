@@ -1,10 +1,14 @@
 import BaseComponent from '../base-component';
+import connectToObserver from '../../core/observer/connect'
 import './modal.scss';
+import '../ui/button.scss';
 
-// NOTE: Pattern. Abstract factory
-export default class Modal extends BaseComponent {
-  constructor({image, name, gender, breed, isReserved, status, text}) {
+class Modal extends BaseComponent {
+  constructor({image, name, gender, breed, isReserved, status, text, id}, observer) {
     super();
+
+    this.observer = observer
+    this.id = id;
     this.image = image;
     this.name = name;
     this.gender = gender;
@@ -14,16 +18,7 @@ export default class Modal extends BaseComponent {
     this.text = text;
     this.render();
 
-    this.subElements.close.addEventListener('pointerup', () => {
-      this.destroy();
-    });
-
-
-    document.addEventListener('keyup', (event) => {
-      if (event.key === 'Escape') {
-        this.destroy();
-      }
-    });
+    this.initEventListeners();
   }
 
   get template() {
@@ -38,9 +33,7 @@ export default class Modal extends BaseComponent {
           this.isReserved ? 'card_reserved' : ''
         }"> 
           <div class="card__reserved-label">В заповеднике</div>
-          <img class="card__image" alt="${this.name}}" src="./public/images/${
-      this.image
-    }.png">
+          <img class="card__image" alt="${this.name}}" src="${this.image}.png">
             <div class="card__content">
           <h5 class="card__title">${this.name}</h5>
           <p class="card__description"><span>${this.breed}</span><span>${
@@ -48,8 +41,12 @@ export default class Modal extends BaseComponent {
     }</span></p>
           <p class="card__text">${this.text}</p>
           <div class="card__actions">
-            <button class="button button_yes">Принять</button>
-            <button class="button button_no">Отклонить</button>
+            <button class="button button_yes" data-element="accept"  ${
+              this.status === 'accepted' ? 'disabled' : ''
+            }>Принять</button>
+            <button class="button button_no" data-element="deny"  ${
+              this.status === 'denied' ? 'disabled' : ''
+            } >Отклонить</button>
           </div>
         </div>
       </div>
@@ -60,11 +57,62 @@ export default class Modal extends BaseComponent {
   }
 
   show() {
-    document.body.append(this.element)
+    document.body.append(this.element);
+  }
+
+  initEventListeners() {
+    const {accept, deny, close} = this.subElements;
+
+    accept.addEventListener('pointerdown', async (event) => {
+      if (accept.hasAttribute('disabled')) {
+        return;
+      }
+      this.acceptBear();
+    });
+
+    deny.addEventListener('pointerdown', (event) => {
+      if (deny.hasAttribute('disabled')) {
+        return;
+      }
+      this.denyBear();
+    });
+
+    close.addEventListener('pointerup', () => {
+      this.destroy();
+    });
+
+    document.addEventListener('keyup', (event) => {
+      if (event.key === 'Escape') {
+        this.destroy();
+      }
+    });
+
+    document.addEventListener('click', (event) => {
+      if (!event.target.closest('.modal')) {
+        return
+      }
+      if (!event.target.closest('.modal__card')) {
+        this.destroy()
+      }
+    })
+  }
+
+  acceptBear() {
+    this.dispatchEvent('accept', this.id);
+    this.subElements.accept.setAttribute('disabled', true)
+    this.subElements.deny.removeAttribute('disabled')
+  }
+
+  denyBear() {
+    this.dispatchEvent('deny', this.id);
+    this.subElements.deny.setAttribute('disabled', true)
+    this.subElements.accept.removeAttribute('disabled')
   }
 
 
-
+  dispatchEvent(type = '', payload = {}) {
+    this.observer.dispatchEvent({type, payload});
+  }
 
   remove() {
     if (this.element) {
@@ -76,3 +124,5 @@ export default class Modal extends BaseComponent {
     this.remove();
   }
 }
+
+export default connectToObserver(Modal)

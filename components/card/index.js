@@ -1,11 +1,6 @@
 import BaseComponent from '../base-component.js';
 import connectToObserver from '../../core/observer/connect.js';
-import reducers from '../../reducers.js';
 import './card.scss';
-
-import api from '../../api'
-
-
 import Modal from '../modal'
 
 
@@ -51,13 +46,11 @@ class Card extends BaseComponent {
       if (accept.hasAttribute('disabled')) {
         return;
       }
-      console.log('кнопка принять активна');
       this.acceptBear();
     });
 
     deny.addEventListener('pointerdown', (event) => {
       if (deny.hasAttribute('disabled')) {
-        console.log('deny is disabled');
         return;
       }
       this.denyBear();
@@ -71,14 +64,10 @@ class Card extends BaseComponent {
 
   acceptBear() {
     this.dispatchEvent('accept', this.bear.id);
-    this.subElements.accept.setAttribute("disabled", true)
-    this.subElements.deny.removeAttribute("disabled")
   }
 
   denyBear() {
     this.dispatchEvent('deny', this.bear.id);
-    this.subElements.deny.setAttribute("disabled", true)
-    this.subElements.accept.removeAttribute("disabled")
   }
 
   showDescription() {
