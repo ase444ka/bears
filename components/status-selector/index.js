@@ -25,7 +25,7 @@ class StatusSelector extends BaseComponent {
   get template() {
 
     return `
-     <div class="dropdown" >
+     <div class="dropdown dropdown_minimized" >
        <svg class="dropdown__arrow">
        <use href="./public/sprites.svg#arrow-down"></use>
        </svg>
