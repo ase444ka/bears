@@ -28,7 +28,7 @@ export default {
     return {slice: 'bears', data}
   },
 
-  async accept(state, payload) {
+  async deny(state, payload) {
     const bears = cloneDeep(state.bears);
     const bear = bears.find((bear) => bear.id === payload);
     bear.status = 'denied';
@@ -52,9 +52,6 @@ export default {
     console.log('switch', payload);
     if (!['all', 'accepted', 'denied', 'reserved'].includes(payload)) {
         throw new Error('not allowed value - ', payload)
-    }
-    if (state.status === payload) {
-        return
     }
     return {slice: 'status', data: payload}
 

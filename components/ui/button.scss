@@ -29,4 +29,7 @@
   &_border_white {
     border: 2px solid var(--white);
   }
+  &:disabled {
+    visibility: hidden;
+  }
 }

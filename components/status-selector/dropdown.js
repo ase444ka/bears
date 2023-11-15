@@ -21,6 +21,9 @@ export default function initDropdown(dropdown, handler) {
         (input) => input.checked
 
       );
+      if (!checked) {
+        return
+      }
       handler(checked.value)
       const option = checked.closest('.dropdown__option');
       setTimeout(() => {

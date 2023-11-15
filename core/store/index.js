@@ -45,7 +45,11 @@ export default class Store {
   }
 
   async dispatch(action, payload) {
-    const {slice, data} = await this.actions[action](this.state, payload);
+    console.log('action name', action);
+    
+    const result = await this.actions[action](this.state, payload);
+    console.log(result)
+    const {slice, data} = result
     if (!slice) {
       return
     }
