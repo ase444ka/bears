@@ -50,6 +50,14 @@
         flex-direction: row;
       }
     }
+    &.card_reserved {
+      .card__description {
+        color: var(--white);
+      }
+      .card__text {
+        color: var(--white);
+      }
+    }
   }
   &__close-button {
     position: absolute;
