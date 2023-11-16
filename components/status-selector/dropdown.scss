@@ -9,6 +9,7 @@
   position: relative;
   max-height: 300px;
   transition: max-height 0.4s;
+  z-index: 10;
   &_minimized {
     max-height: 32px;
     .dropdown__arrow {

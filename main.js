@@ -196,9 +196,14 @@ class App extends BaseComponent {
   }
 
   render() {
+    this.renderFooter()
     super.render();
     this.renderStatusSelector()
     this.renderCardList();
+  }
+
+  renderFooter() {
+    document.querySelector('.footer__inner').innerHTML = `Все права защищены Happy Bears ${new Date().getFullYear()}©`
   }
 
   renderStatusSelector() {
@@ -215,9 +220,13 @@ class App extends BaseComponent {
 
   get template() {
     return `<div>
-    <div data-element="selector">
-        <!--selector-->
-      </div>
+      <div class="controls">
+        <h2 class="controls__title">Поступившие заявки</h2>
+        <label class="controls__checkbox"><input type="checkbox" id="reserved" />Только из заповедника</label>
+        <div data-element="selector">
+          <!--selector-->
+        </div>
+      </div>    
       <div data-element="cards">
         <!--cards-->
       </div>
@@ -240,4 +249,4 @@ class App extends BaseComponent {
 const AppClass = ConnectToObserver(App);
 const app = new AppClass();
 
-document.body.append(app.element);
+document.querySelector('#app .container').append(app.element);
