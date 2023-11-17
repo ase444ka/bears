@@ -49,12 +49,14 @@ export default {
   },
 
   switch(state, payload) {
-    console.log('switch', payload);
     if (!['all', 'accepted', 'denied', 'reserved'].includes(payload)) {
         throw new Error('not allowed value - ', payload)
     }
     return {slice: 'status', data: payload}
+  },
 
+  setReverved(state, payload) {
+    return {slice: 'onlyReserved', data: payload}
   }
 
   // let state, bear, response;

@@ -8,6 +8,7 @@ export default class Store {
   state = {
     bears: [],
     status: 'all',
+    onlyReserved: false,
   };
 
   set state(value) {

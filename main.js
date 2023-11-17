@@ -134,6 +134,7 @@ import './ui-kit/button.scss';
 import BaseComponent from './components/base-component.js';
 import CardsList from './components/cards-list';
 import StatusSelector from './components/status-selector'
+import ReservedCheckbox from './components/reserved-checkbox'
 import ConnectToObserver from './core/observer/connect';
 
 
@@ -198,12 +199,18 @@ class App extends BaseComponent {
   render() {
     this.renderFooter()
     super.render();
+    this.renderReservedCheckbox()
     this.renderStatusSelector()
     this.renderCardList();
   }
 
   renderFooter() {
     document.querySelector('.footer__inner').innerHTML = `Все права защищены Happy Bears ${new Date().getFullYear()}©`
+  }
+
+  renderReservedCheckbox() {
+    this.reservedCheckbox = new ReservedCheckbox()
+    this.subElements['reserved-checkbox'].append(this.reservedCheckbox.element)
   }
 
   renderStatusSelector() {
@@ -222,7 +229,7 @@ class App extends BaseComponent {
     return `<div>
       <div class="controls">
         <h2 class="controls__title">Поступившие заявки</h2>
-        <label class="controls__checkbox"><input type="checkbox" id="reserved" />Только из заповедника</label>
+        <div data-element="reserved-checkbox"><!--reserved checkbox --></div>
         <div data-element="selector">
           <!--selector-->
         </div>

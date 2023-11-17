@@ -16,7 +16,8 @@ class StatusSelector extends BaseComponent {
 
     this.render();
     initDropdown(this.element, (value) => {
-      if (this.store.status === value) return
+      if (this.store.getState('status') === value) return
+      console.log('now - ', this.store.state.status, 'neww - ', value);
       this.store.dispatch('switch', value)
 
     })
@@ -40,10 +41,6 @@ class StatusSelector extends BaseComponent {
        <div class="dropdown__option">
          <input type="radio" name="t" id="_3" value="denied" />
          <label for="_3">Отклоненные</label>
-       </div>
-       <div class="dropdown__option">
-         <input type="radio" name="t" id="_4" value="reserved" />
-         <label for="_4">В заповеднике</label>
        </div>
      </div>
     `;
