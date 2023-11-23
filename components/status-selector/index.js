@@ -17,7 +17,6 @@ class StatusSelector extends BaseComponent {
     this.render();
     initDropdown(this.element, (value) => {
       if (this.store.getState('status') === value) return
-      console.log('now - ', this.store.state.status, 'neww - ', value);
       this.store.dispatch('switch', value)
 
     })

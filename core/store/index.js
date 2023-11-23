@@ -12,14 +12,13 @@ export default class Store {
   };
 
   set state(value) {
-    console.error('oops', value);
     throw new Error('you can not verify state outside');
   }
 
   listeners = {};
 
   getState(slice) {
-    return this.state[slice] || this.state;
+    return this.state[slice] ?? this.state;
   }
 
   setState(slice, value) {
@@ -46,10 +45,7 @@ export default class Store {
   }
 
   async dispatch(action, payload) {
-    console.log('action name', action);
-    
     const result = await this.actions[action](this.state, payload);
-    console.log(result)
     const {slice, data} = result
     if (!slice) {
       return

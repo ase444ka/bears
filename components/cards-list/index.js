@@ -33,7 +33,6 @@ export default class CardsList extends BaseComponent {
   }
 
   getCardsList() {
-    console.log('getcardslist')
     const bears = this.store.getState().bears;
     let filteredBears = bears.filter((bear) =>
       this.store.getState('onlyReserved') ? bear.isReserved : true
@@ -42,13 +41,13 @@ export default class CardsList extends BaseComponent {
       case 'all':
         break;
       case 'accepted':
-        filteredBears = bears.filter((bear) => bear.status === 'accepted');
+        filteredBears = filteredBears.filter((bear) => bear.status === 'accepted');
         break;
       case 'denied':
-        filteredBears = bears.filter((bear) => bear.status === 'denied');
+        filteredBears = filteredBears.filter((bear) => bear.status === 'denied');
         break;
       case 'reserved':
-        filteredBears = bears.filter((bear) => bear.isReserved);
+        filteredBears = filteredBears.filter((bear) => bear.isReserved);
         break;
       default:
         console.log(this.store.getState());
