@@ -1,0 +1,33 @@
+.update-button {
+  justify-self: flex-end;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  color: var(--white);
+  background-color: transparent;
+  text-align: center;
+  transition: all 0.2s ease-in-out 0.1s;
+
+  &:hover {
+    color: var(--yellow);
+    transform: translate(1px, 1px);
+  }
+  &.update-button_active {
+    animation-name: rotate;
+    animation-duration: 0.5s;
+  }
+  svg {
+    height: 40px;
+    width: 40px;
+    
+  }
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(180deg);
+  }
+}

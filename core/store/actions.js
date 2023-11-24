@@ -39,7 +39,7 @@ export default {
   async reset(state) {
     const bears = cloneDeep(state.bears);
     const newBears = bears.map(bear => ({...bear, status: null}))
-    const data = await postBears(bears)
+    const data = await postBears(newBears)
     return {slice: 'bears', data}
   },
 

@@ -136,6 +136,7 @@ import CardsList from './components/cards-list';
 import StatusSelector from './components/status-selector'
 import ReservedCheckbox from './components/reserved-checkbox'
 import ConnectToObserver from './core/observer/connect';
+import UpdateButton from './components/update-button';
 
 
 
@@ -198,6 +199,7 @@ class App extends BaseComponent {
 
   render() {
     this.renderFooter()
+    this.renderHeader()
     super.render();
     this.renderReservedCheckbox()
     this.renderStatusSelector()
@@ -206,6 +208,12 @@ class App extends BaseComponent {
 
   renderFooter() {
     document.querySelector('.footer__inner').innerHTML = `Все права защищены Happy Bears ${new Date().getFullYear()}©`
+  }
+
+  renderHeader() {
+    const updateButton = new UpdateButton()
+
+    document.querySelector('.header__inner').append(updateButton.element)
   }
 
   renderReservedCheckbox() {
