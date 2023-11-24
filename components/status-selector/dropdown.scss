@@ -9,6 +9,7 @@
   position: relative;
   max-height: 300px;
   transition: max-height 0.4s;
+  grid-area: selector;
   z-index: 5000;
   &_minimized {
     max-height: 32px;

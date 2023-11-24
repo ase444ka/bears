@@ -1,6 +1,7 @@
 .checkbox {
   display: inline-block;
   position: relative;
+  grid-area: checkbox;
   &es-demo {
     display: flex;
     gap: 2rem;
