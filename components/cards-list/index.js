@@ -40,6 +40,9 @@ export default class CardsList extends BaseComponent {
     switch (this.store.getState().status) {
       case 'all':
         break;
+        case 'incoming':
+        filteredBears = filteredBears.filter((bear) => !bear.status);
+        break;
       case 'accepted':
         filteredBears = filteredBears.filter((bear) => bear.status === 'accepted');
         break;

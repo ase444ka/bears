@@ -34,6 +34,10 @@ class StatusSelector extends BaseComponent {
          <label for="_1">Все</label>
        </div>
        <div class="dropdown__option">
+         <input type="radio" name="t" id="_11" value="incoming"/>
+         <label for="_11">Входящие</label>
+       </div>
+       <div class="dropdown__option">
          <input type="radio" name="t" id="_2" value="accepted"/>
          <label for="_2">Принятые</label>
        </div>

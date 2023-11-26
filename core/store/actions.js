@@ -49,7 +49,7 @@ export default {
   },
 
   switch(state, payload) {
-    if (!['all', 'accepted', 'denied', 'reserved'].includes(payload)) {
+    if (!['all', 'incoming', 'accepted', 'denied', 'reserved'].includes(payload)) {
         throw new Error('not allowed value - ', payload)
     }
     return {slice: 'status', data: payload}
