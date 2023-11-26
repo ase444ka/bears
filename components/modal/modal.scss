@@ -72,10 +72,27 @@
     }
     &__card {
       max-height: 95vh;
-      width: 80vw;
+      width: 60vw;
+      overflow-y: auto;
+      scrollbar-color: var(--green-2) var(--green-1);
+  scrollbar-width: thin;
+  &::-webkit-scrollbar {
+    width: 8px;               /* ширина scrollbar */
+  }
+  &::-webkit-scrollbar-track {
+    background: var(--green-1);        /* цвет дорожки */
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--green-2);    /* цвет плашки */
+    border-radius: 5px;       /* закругления плашки */
+    border: 3px solid var(--green-2);  /* padding вокруг плашки */
+  }
+
+
       .card {
         &__image {
           object-position: top;
+          height: 45%;
         }
       }
     }
