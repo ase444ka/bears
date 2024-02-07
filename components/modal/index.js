@@ -27,7 +27,7 @@ class Modal extends BaseComponent {
     <div class="modal__window">
       <div class="modal__wrapper">
         <button class="close modal__close-button" data-element="close">
-              <svg class="close__icon"><use href="assets/sprites.svg#cross"></use></svg>
+              <svg class="close__icon"><use href="/bears/assets/sprites.svg#cross"></use></svg>
         </button>
         <div class="card modal__card ${
           this.isReserved ? 'card_reserved' : ''

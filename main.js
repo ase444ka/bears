@@ -28,7 +28,7 @@ import './ui-kit/button.scss';
 //       <input type="checkbox" class="checkbox__input" />
 //       <div class="checkbox__state">
 //         <div class="checkbox__control">
-//           <svg class="checkbox__icon"><use href="assets/sprites.svg#check"></use></svg>
+//           <svg class="checkbox__icon"><use href="/bears/assets/sprites.svg#check"></use></svg>
 //         </div>
 //         <div class="checkbox__label">Только из заповедника</div>
 //       </div>
@@ -37,7 +37,7 @@ import './ui-kit/button.scss';
 //       <input type="checkbox" class="checkbox__input" checked />
 //       <div class="checkbox__state">
 //         <div class="checkbox__control">
-//           <svg class="checkbox__icon"><use href="assets/sprites.svg#check"></use></svg>
+//           <svg class="checkbox__icon"><use href="/bears/assets/sprites.svg#check"></use></svg>
 //         </div>
 //         <div class="checkbox__label">Только из заповедника</div>
 //       </div>
@@ -45,7 +45,7 @@ import './ui-kit/button.scss';
 //   </div>
 //   <div class="close-demo">
 //     <button class="close">
-//       <svg class="close__icon"><use href="assets/sprites.svg#cross"></use></svg>
+//       <svg class="close__icon"><use href="/bears/assets/sprites.svg#cross"></use></svg>
 //     </button>
 //   </div>
 //   <div class="cards-demo">
