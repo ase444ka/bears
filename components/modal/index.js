@@ -27,13 +27,13 @@ class Modal extends BaseComponent {
     <div class="modal__window">
       <div class="modal__wrapper">
         <button class="close modal__close-button" data-element="close">
-              <svg class="close__icon"><use href="./public/sprites.svg#cross"></use></svg>
+              <svg class="close__icon"><use href="public/sprites.svg#cross"></use></svg>
         </button>
         <div class="card modal__card ${
           this.isReserved ? 'card_reserved' : ''
         }"> 
           <div class="card__reserved-label">В заповеднике</div>
-          <img class="card__image" alt="${this.name}}" src="${this.image}.png">
+          <img class="card__image" alt="${this.name}" src="${this.image}">
             <div class="card__content">
           <h5 class="card__title">${this.name}</h5>
           <p class="card__description"><span>${this.breed}</span><span>${

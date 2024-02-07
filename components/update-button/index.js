@@ -12,7 +12,7 @@ class UpdateButton extends BaseComponent {
     return `
             <button class="update-button" title="сбросить">
                 <svg>
-                    <use href="/public/sprites.svg#update"></use>
+                    <use href="public/sprites.svg#update"></use>
                 </svg>
             </button>
         `;
