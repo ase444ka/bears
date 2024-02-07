@@ -28,7 +28,7 @@ import './ui-kit/button.scss';
 //       <input type="checkbox" class="checkbox__input" />
 //       <div class="checkbox__state">
 //         <div class="checkbox__control">
-//           <svg class="checkbox__icon"><use href="public/sprites.svg#check"></use></svg>
+//           <svg class="checkbox__icon"><use href="assets/sprites.svg#check"></use></svg>
 //         </div>
 //         <div class="checkbox__label">Только из заповедника</div>
 //       </div>
@@ -37,7 +37,7 @@ import './ui-kit/button.scss';
 //       <input type="checkbox" class="checkbox__input" checked />
 //       <div class="checkbox__state">
 //         <div class="checkbox__control">
-//           <svg class="checkbox__icon"><use href="public/sprites.svg#check"></use></svg>
+//           <svg class="checkbox__icon"><use href="assets/sprites.svg#check"></use></svg>
 //         </div>
 //         <div class="checkbox__label">Только из заповедника</div>
 //       </div>
@@ -45,7 +45,7 @@ import './ui-kit/button.scss';
 //   </div>
 //   <div class="close-demo">
 //     <button class="close">
-//       <svg class="close__icon"><use href="public/sprites.svg#cross"></use></svg>
+//       <svg class="close__icon"><use href="assets/sprites.svg#cross"></use></svg>
 //     </button>
 //   </div>
 //   <div class="cards-demo">
@@ -85,7 +85,7 @@ import './ui-kit/button.scss';
 
 // <div class="dropdown" >
 //   <svg class="dropdown__arrow">
-//   <use href="./public/sprites.svg#arrow-down"></use>
+//   <use href="./assets/sprites.svg#arrow-down"></use>
 //   </svg>
 //   <div class="dropdown__option">
 //     <input type="radio" name="t" id="_1" value="Принятые"  checked/>
@@ -107,7 +107,7 @@ import './ui-kit/button.scss';
 //   <div class="modal__window">
 //     <div class="modal__wrapper">
 //     <button class="close modal__close-button">
-//           <svg class="close__icon"><use href="./public/sprites.svg#cross"></use></svg>
+//           <svg class="close__icon"><use href="./assets/sprites.svg#cross"></use></svg>
 //     </button>
 //     <div class="card modal__card">
 //     <div class="card__reserved-label">В заповеднике</div>

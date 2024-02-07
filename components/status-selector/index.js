@@ -27,7 +27,7 @@ class StatusSelector extends BaseComponent {
     return `
      <div class="dropdown dropdown_minimized" >
        <svg class="dropdown__arrow">
-       <use href="public/sprites.svg#arrow-down"></use>
+       <use href="assets/sprites.svg#arrow-down"></use>
        </svg>
        <div class="dropdown__option">
          <input type="radio" name="t" id="_1" value="all"/>

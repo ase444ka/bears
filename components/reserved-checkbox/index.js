@@ -9,7 +9,7 @@ class ReservedCheckbox extends BaseComponent {
         <div class="checkbox__state">
             <div class="checkbox__control">
                 <svg class="checkbox__icon">
-                    <use href="public/sprites.svg#check"></use>
+                    <use href="assets/sprites.svg#check"></use>
                 </svg>
             </div>
             <div class="checkbox__label">Только из заповедника</div>
